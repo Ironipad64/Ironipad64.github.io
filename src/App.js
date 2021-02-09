@@ -1,7 +1,10 @@
 import React from 'react';
+import styled from 'styled-components'
 
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList'
+
+
 
 import './styles.css';
 
@@ -71,18 +74,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoForm handleTodoAdd={this.handleTodoAdd} />
-        <TodoList
-          todos={this.state.todos}
-          handleTodoCompleted={this.handleTodoCompleted}
-          handleTodoToggle={this.handleTodoToggle}
+      <StyledApp>
+        <div>
+          <h2>Welcome to your Todo App!</h2>
+          <TodoForm handleTodoAdd={this.handleTodoAdd} />
+          <TodoList
+            todos={this.state.todos}
+            handleTodoCompleted={this.handleTodoCompleted}
+            handleTodoToggle={this.handleTodoToggle}
 
-        />
-      </div>
+          />
+        </div>
+      </StyledApp>
     );
   }
 }
 
 export default App;
+
+
+const StyledApp = styled.div`
+  display: flex;
+	flex-direction: column;	
+	align-items: center;
+	font-size: 2rem;
+	font-weight: 330;
+	text-align: center;
+  opacity: 2;
+  
+`
