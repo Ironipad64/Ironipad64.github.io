@@ -3,6 +3,8 @@ import React from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList'
 
+import './styles.css';
+
 const todos = [
   {
     name: 'Wash the car',
