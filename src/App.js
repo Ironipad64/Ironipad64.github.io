@@ -1,5 +1,8 @@
 import React from 'react';
 
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList'
+
 const todos = [
   {
     name: 'Wash the car',
@@ -24,12 +27,57 @@ class App extends React.Component {
     }
   }
 
+  handleTodoAdd = (todoName) => {
+    const todo = {
+      name: todoName,
+      id: this.state.todos.length,
+      finished: false
+    };
+
+    const newTodos = [...this.state.todos, todo];
+
+    this.setState({
+      todos: newTodos
+    });
+  }
+
+  handleTodoCompleted = () => {
+    const newTodos = this.state.todos.filter(todo => {
+      return (!todo.finished);
+    });
+
+    this.setState({
+      todos: newTodos
+    });
+  }
+
+  handleTodoToggle = (todoId) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            finished: !todo.finished
+          }
+        }
+        return (todo);
+      })
+    });
+  }
+
 
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoForm handleTodoAdd={this.handleTodoAdd} />
+        <TodoList
+          todos={this.state.todos}
+          handleTodoCompleted={this.handleTodoCompleted}
+          handleTodoToggle={this.handleTodoToggle}
+
+        />
       </div>
     );
   }
